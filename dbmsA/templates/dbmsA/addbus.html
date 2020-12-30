@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends 'dbmsA/base.html' %}
+{% block body_block %}
+<style>
+
+</style>
+
+    <div class = "container mt-5">
+        <h1 class="alert alert-primary mt-2">Add Bus</h1>
+        <p>Please fill in this form to add bus details.</p>
+        <hr>
+        {% for error in messages %}
+        <p class="error"> {{ error }}*</p>
+        {% endfor %}
+            <form class="form-inline" method='POST'>{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-primary" value="Add Bus">
+            </form>
+    
+    </div>
+
+{% endblock %}

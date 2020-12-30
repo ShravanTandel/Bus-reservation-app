@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends 'dbmsA/base.html' %}
+{% block body_block %}
+<style>
+
+footer{
+        margin-top: 30%;
+    }
+</style>
+
+    <div class = "container mt-5">
+        <h1 class="alert alert-primary mt-2">Register Company</h1>
+        <p>Please fill in this form to register company.</p>
+        <hr>
+            <form class="form-inline" method='POST'>{% csrf_token %}
+                {{ form.as_p }}
+                {% for error in messages %}
+                <p class="error">{{ error }}*</p>
+                {% endfor %}
+                <input type="submit" class="btn btn-primary" value="Register Company">
+            </form>
+    
+    </div>
+
+{% endblock %}

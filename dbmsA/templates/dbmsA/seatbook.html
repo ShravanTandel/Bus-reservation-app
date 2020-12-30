@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% extends 'dbmsA/base.html' %}
+{% block body_block %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type='text/javascript'>
+        function validate() {
+            var seatnum = document.getElementsByName('seatno')[0].value
+            var j = JSON.parse("{{c|escapejs}}")
+            for (var x in j) {
+                var i = j[x].length
+                for (var k = 0; k < i; k++) {
+                    if (seatnum == j[x][k]) {
+                        return true
+                        continue
+                    }
+                }
+                alert('Invalid Seat No')
+                return false
+
+            }
+        }
+    </script>
+    <style>
+        .container {
+            padding: 16px;
+            background-color: white;
+            margin-bottom: 0px;
+
+        }
+
+        footer{
+        margin-top: 10%;
+    }
+    </style>
+
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="alert alert-primary">Available Seats</h2>
+        <div class="container text-center mt-5">
+            {% for i in a1 %}
+            {% if i in l %}
+            <button type="button" class="btn btn-primary mr-2" style="width: 70px; height: 40px;">{{i}}</button>
+            {% else %}
+            <button type="button" class="btn btn-primary" style="width: 70px; height: 40px;" disabled>{{i}}</button>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="container text-center">
+            {% for i in a2 %}
+            {% if i in l %}
+            <button type="button" class="btn btn-primary mt-2 " style="width: 70px; height: 40px;">{{i}}</button>
+            {% else %}
+            <button type="button" class="btn btn-primary mt-2" style="width: 70px; height: 40px;"
+                disabled>{{i}}</button>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="container text-center">
+            {% for i in a3 %}
+            {% if i in l %}
+            <button type="button" class="btn btn-primary mt-1" style="width: 70px; height: 40px;">{{i}}</button>
+            {% else %}
+            <button type="button" class="btn btn-primary mt-1" style="width: 70px; height: 40px;"
+                disabled>{{i}}</button>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="text-center mt-5">
+        <form class="form-inline" method='POST' onsubmit="return validate()">{% csrf_token %}
+            <div class="form-group">
+                <div class="col-xs-4">
+                    {{form.as_p}} 
+                </div>
+                <input type="submit" class="btn btn-success" value="Submit">
+            </div>
+
+        </form>
+        <!-- {% if request.method == 'POST' %}
+        <h2>Click here to confirm seat</h2>
+        <a href="{% url 'enterdetails' seat.seatno id seat.id %}" class="btn btn-primary">Book</a>
+        {% endif%} -->
+        </div>
+    </div>
+
+</body>
+
+{% endblock %}

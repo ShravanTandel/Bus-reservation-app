@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'dbmsA/base.html' %}
+{% block body_block %}
+<style>
+
+</style>
+<div class="container mt-5">
+<h1 class="alert alert-primary mt-2">Passenger Detail</h1>
+        <p>Please fill in this form to enter passenger detail.</p>
+        <hr>
+    <div class="container mt-2">
+    <form class="form-inline mb-2" method='POST'>{% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p}}
+            <input type="submit" class="btn btn-primary" value="Confirm Booking">
+        </div>
+    </form>
+    <a href="{% url 'cancel' seatid %}" class="btn btn-danger">Cancel Booking</a>
+    </div>
+</div>
+{% endblock %}

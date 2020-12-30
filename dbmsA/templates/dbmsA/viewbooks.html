@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+{% extends 'dbmsA/base.html' %}
+{% block body_block %}
+<style>
+    .container {
+        padding: 16px;
+        background-color: white;
+
+    }
+</style>
+
+<script type="text/javascript">
+    function dcompany(){
+        var c = confirm("Do you want to delete company?")
+        if(c==true){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+
+    function dbus(){
+        var c = confirm("Do you want to delete bus?")
+        if(c==true){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+
+    function dpassenger(){
+        var c = confirm("Do you want to delete passenger?")
+        if(c==true){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+
+</script>
+
+<div class="container mt-5">
+    <h2 class="alert alert-primary">Company Details</h2>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Company Id</th>
+                <th>Company Name</th>
+                <th>Date of register</th>
+                <th>Click To Views</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in company %}
+            <tr>
+                <td>{{u.id}}</td>
+                <td>{{u.name}}</td>
+                <td>{{u.registereddate}}</td>
+                <td>
+                    <a href="{% url 'deletecompany' u.id %}" onclick = "return dcompany()"class="btn btn-danger">Delete</a>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="container mt-5">
+    <h2 class="alert alert-primary">Buses Details<h5></h2>
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>BusNo</th>
+          <th>Date</th>
+          <th>Company</th>
+          <th>Departure</th>
+          <th>Duration</th>
+          <th>Type</th>
+          <th>Price</th>
+          <th>Click To Views</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for i in bus %}
+    
+        <tr>
+          <td>{{i.busno}}</td>
+          <td>{{i.date}}</td>
+          <td>{{i.company}}</td>
+          <td>{{i.departuretime}}</td>
+          <td>{{i.duration}}</td>
+          <td>{{i.bustype}}</td>
+          <td>{{i.price}}</td>
+          <td><a href="{% url 'deletebus' i.id %}" onclick = "return dbus()"class="btn btn-danger">Delete</a></td>
+        </tr>
+
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+
+<div class="container mt-5">
+    <h2 class="alert alert-primary">Passenger Details</h2>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ticket No</th>
+                <th>Passenger Name</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Company</th>
+                <th>Bus No</th>
+                <th>Seat No</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Click To Views</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in passenger %}
+            <tr>
+                <td>{{u.id}}</td>
+                <td>{{u.name}}</td>
+                <td>{{u.busno.source}}</td>
+                <td>{{u.busno.destination}}</td>
+                <td>{{u.busno.company}}</td>
+                <td>{{u.busno}}</td>
+                <td>{{u.seatno}}</td>
+                <td>{{u.date}}</td>
+                <td>{{u.busno.price}}</td>
+                <td>
+                    <a href="{% url 'deletepassenger' u.id %}" onclick = "return dpassenger()"class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

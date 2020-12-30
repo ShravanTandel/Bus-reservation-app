@@ -1,0 +1,78 @@
+{% extends 'dbmsA/base.html' %}
+
+{% block body_block %}
+
+<style>
+
+    select{
+        width: 1180px;
+        height: 50px;
+        background: #f1f1f1;
+    }
+
+    select:focus{
+        background-color: #ddd;
+        outline: none;
+
+    }
+
+    footer{
+        margin-top: 30%;
+    }
+
+</style>
+
+<!-- <div class="container">
+    <h2 class="alert alert-primary">Bus Detail</h2>
+    <h2>{{ avgrate.rate__avg|floatformat:1 }}</h2>
+    {% if rate %}
+    <h2>U cannot vote</h2>
+    {% else %}
+    <form class="form-inline" method = "POST">{% csrf_token %}
+        <div class= "form-group">
+            {{ form.as_p }}
+        </div>
+        <br>
+        <input type="submit" value = "Rate">
+    </form> 
+    {% endif %}
+</div> -->
+<div class="container">
+    <h2 class="alert alert-primary">Bus Detail</h2>
+    <table style="width:100%" class="table">
+        <tr>
+        <th>Passenger:</th>
+        <td>{{ passenger1.name }}</td>
+        </tr>
+        <tr>
+        <th>Company:</th>
+        <td>{{ bus1.company }}</td>
+        </tr>
+        <tr>
+        <th>Bus NO:</th>
+        <td>{{ bus1.busno }}</td>
+        </tr>
+        <tr>
+        <th>Current Rating:</th>
+        <td>{{ bus1.rate }}</td>
+        </tr>
+        <tr>
+        <th>Review:</th>
+        <td>
+            {% if rate %}
+            <h2 class="error">You have already rated this bus*</h2>
+            {% else %}
+            <form class="form-inline" method = "POST">{% csrf_token %}
+            <div class= "form-group">
+                {{ form.as_p }}
+            </div>
+            <br>
+            <input type="submit" class="btn btn-warning" value = "Rate">
+            </form>
+            {% endif %}
+        </td>
+        </tr>
+    </table>
+</div>
+  
+{% endblock %}

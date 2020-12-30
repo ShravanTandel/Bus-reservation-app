@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% extends 'dbmsA/base.html' %}
+{% block body_block %}
+<style>
+    .container {
+        padding: 16px;
+        background-color: white;
+
+    }
+
+    .rate{
+      width: 50px;
+      height: 38px;
+    }
+
+    footer{
+        margin-top: 25%;
+    }
+
+</style>
+
+<script type="text/javascript">
+  function confirm1(){
+    var s = confirm("Do you want to delete the booking?")
+    if (s == true){
+      return true
+    }
+    else{
+      return false
+    }
+  }
+</script>
+
+<div class="container mt-5">
+    <h2 class="alert alert-primary">Booked Tickets</h2>
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ticket No</th>
+          <th>Passenger Name</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Company</th>
+          <th>Bus No</th>
+          <th>Seat No</th>
+          <th>Date</th>
+          <th>Price</th>
+          <th>Click To Views</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for u in user.passenger.all %}
+            {% if u.busno.date >= today %}   
+        <tr>
+          <td>{{u.id}}</td>
+          <td>{{u.name}}</td>
+          <td>{{u.busno.source}}</td>
+          <td>{{u.busno.destination}}</td>
+          <td>{{u.busno.company}}</td>
+          <td>{{u.busno}}</td>
+          <td>{{u.seatno}}</td>
+          <td>{{u.busno.date}}</td>
+          <td>{{u.busno.price}}</td>
+          <td>
+            <a href="{% url 'update' u.id %}" class="btn btn-success">Update</a>
+            <a href="{% url 'cancelbooks' u.seatno.id %}" onclick = "return confirm1()" class="btn btn-danger">Cancel Booking</a></td>
+        </tr>
+        {% endif %}
+
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+
+  <div class="container mt-5">
+    <h2 class="alert alert-primary">Completed</h2>
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ticket No</th>
+          <th>Passenger Name</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Company</th>
+          <th>Bus No</th>
+          <th>Seat No</th>
+          <th>Date</th>
+          <th>Price</th>
+          <th>Rate and Review</th>
+          <th>Click To Views</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for u in user.passenger.all %}
+            {% if u.busno.date < today %}   
+        <tr>
+          <td>{{u.id}}</td>
+          <td>{{u.name}}</td>
+          <td>{{u.busno.source}}</td>
+          <td>{{u.busno.destination}}</td>
+          <td>{{u.busno.company}}</td>
+          <td>{{u.busno}}</td>
+          <td>{{u.seatno}}</td>
+          <td>{{u.date}}</td>
+          <td>{{u.busno.price}}</td>
+          <td>
+              <a href="{% url 'rating' u.id u.busno.id %}" class= "btn btn-primary ">Rate</a>
+
+          </td>
+          <td>
+            <a href="{% url 'cancelbooks' u.seatno.id %}" onclick = "return confirm1()" class="btn btn-danger">Delete</a>
+        </td>
+        </tr>
+            {% endif %}
+
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+
+{% endblock %}
