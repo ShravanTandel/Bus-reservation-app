@@ -20,23 +20,13 @@
         margin-top: 30%;
     }
 
+    .container{
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+
 </style>
 
-<!-- <div class="container">
-    <h2 class="alert alert-primary">Bus Detail</h2>
-    <h2>{{ avgrate.rate__avg|floatformat:1 }}</h2>
-    {% if rate %}
-    <h2>U cannot vote</h2>
-    {% else %}
-    <form class="form-inline" method = "POST">{% csrf_token %}
-        <div class= "form-group">
-            {{ form.as_p }}
-        </div>
-        <br>
-        <input type="submit" value = "Rate">
-    </form> 
-    {% endif %}
-</div> -->
 <div class="container">
     <h2 class="alert alert-primary">Bus Detail</h2>
     <table style="width:100%" class="table">
@@ -54,7 +44,7 @@
         </tr>
         <tr>
         <th>Current Rating:</th>
-        <td>{{ bus1.rate }}</td>
+        <td>{{ bus1.rate|floatformat:1 }}</td>
         </tr>
         <tr>
         <th>Review:</th>
