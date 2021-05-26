@@ -11,7 +11,6 @@ class SeatForm(forms.ModelForm):
 
 class PassengerForm(forms.ModelForm):
     name = forms.CharField(max_length = 20,label="Name",widget=forms.TextInput(attrs={'placeholder': 'Username'}))
-    #gender = forms.CharField(max_length = 20, label="Gender",widget=forms.TextInput(attrs={'placeholder': 'Gender ( Male - M, Female - F )'}))
     age = forms.CharField(max_length = 20,label="Age",widget=forms.TextInput(attrs={'placeholder': 'Age'}))
     emailid = forms.CharField(max_length = 20,label="Email Id",widget=forms.TextInput(attrs={'placeholder': 'Email Id'}))
     phoneno = forms.CharField(max_length = 20,label="Phone No",widget=forms.TextInput(attrs={'placeholder': 'Phone No'}))
@@ -21,7 +20,6 @@ class PassengerForm(forms.ModelForm):
         fields = ('name','gender','age','emailid','phoneno',)
         widgets = {
             'name': forms.TextInput(attrs = {'class':'form-control','required':'true'}),
-            #'gender': forms.TextInput(attrs = {'class':'form-control','required':'true'}),
             'age': forms.TextInput(attrs = {'class':'form-control','required':'true'}),
             'emailid': forms.TextInput(attrs = {'class':'form-control','required':'true'}),
             'phoneno': forms.TextInput(attrs = {'class':'form-control','required':'true'}),
@@ -68,7 +66,6 @@ class Companyform(forms.ModelForm):
         }
 
 class RatingForm(forms.ModelForm):
-    #experience = forms.CharField(max_length = 20,label="Company Name",widget=forms.TextInput(attrs={'placeholder': 'Company Name','required':'true'}))
 
     class Meta():
         model = Rating
