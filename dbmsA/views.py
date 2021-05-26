@@ -17,11 +17,19 @@ from django.db.models import Count
 # Create your views here.
 
 def index(request):
+    i = date.today()
     if request.method == 'POST':
         s = request.POST.get('source')
         d = request.POST.get('destination')
         d1 = request.POST.get('date')
-        return HttpResponseRedirect(f"searchbusesfrom{s}to{d}on{d1}")
+        if s == "" or d == "" or d1 =="":
+            messages.info(request, "Invalid input")
+            noofcompany = len(Company.objects.all())
+            noofpassenger = len(Passenger.objects.all())
+            return render(request, 'dbmsA/index.html',{"noofcompany":noofcompany, "noofpassenger":noofpassenger})
+
+        else:
+            return HttpResponseRedirect(f"searchbusesfrom{s}to{d}on{d1}")
     else:
         noofcompany = len(Company.objects.all())
         noofpassenger = len(Passenger.objects.all())
