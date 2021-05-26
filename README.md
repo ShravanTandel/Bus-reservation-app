@@ -15,7 +15,7 @@ A django based end to end databased focused Bus registeration application, whose
 * Update feature for user before the travel
 * User profile with present and past travel details
 * Involves user authentication
-* Rating and review system
+* Rating and review bus
 
 ## Technologies Used
 
