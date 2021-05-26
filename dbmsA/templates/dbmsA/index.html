@@ -114,6 +114,9 @@ input[type=submit]{
           <input class="btn btn-primary" type="submit" value="Search">
         </div>
       </div>
+                {% for error in messages %}
+                <p class="error">{{ error }}*</p>
+                {% endfor %}
     </form>
   </div>
     
