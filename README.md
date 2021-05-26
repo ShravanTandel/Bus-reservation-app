@@ -4,6 +4,9 @@ A django based end to end databased focused Bus registeration application, whose
 ### Home Page
 ![bluebus home](https://user-images.githubusercontent.com/53228531/119648552-379a2c80-be3f-11eb-90e5-601c97fc2ce3.JPG)
 
+### List of buses
+![bluebus businfo](https://user-images.githubusercontent.com/53228531/119648877-98296980-be3f-11eb-97bf-7e13ad66fb2e.JPG)
+
 ## Features
 * Search feature for available buses
 * OrderBy option for listing buses with specific features
@@ -13,3 +16,15 @@ A django based end to end databased focused Bus registeration application, whose
 * User profile with present and past travel details
 * Involves user authentication
 * Rating and review system
+
+## Technologies Used
+
+* **Back-end**
+  * **Python** - Programming language
+  * **Django** - Framework
+  * **MySQL** - Database
+
+* **Front-end**
+  *  **HTML**
+  *  **CSS**
+  *  **Javascript**
