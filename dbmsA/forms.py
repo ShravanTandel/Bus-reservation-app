@@ -74,4 +74,22 @@ class RatingForm(forms.ModelForm):
         widgets = {
             'experience': forms.TextInput(attrs = {'class':'form-control'})
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
